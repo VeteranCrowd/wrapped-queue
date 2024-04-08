@@ -187,11 +187,11 @@ Sends a message.
 | Param | Type | Description |
 | --- | --- | --- |
 | options | <code>object</code> | Options. |
-| [options.attributes] | <code>DecodedMessageAttributes</code> | [Message attributes.](DecodedMessageAttributes) |
 | options.body | <code>\*</code> | [SendMessageCommandInput messageBody](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-sqs/interfaces/sendmessagecommandinput.html#messagebody). Must be a string or a JSON-serializable object. |
 | [options.deduplicationId] | <code>string</code> | [SendMessageCommandInput messageDeduplicationId](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-sqs/interfaces/sendmessagecommandinput.html#messagededuplicationid) |
 | [options.delaySeconds] | <code>number</code> | Delay in seconds. |
 | [options.groupId] | <code>string</code> | [SendMessageCommandInput messageGroupId](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-sqs/interfaces/sendmessagecommandinput.html#messagegroupid) |
+| [options.messageAttributes] | <code>DecodedMessageAttributes</code> | [Message attributes.](DecodedMessageAttributes) |
 | [options.systemAttributes] | <code>DecodedMessageAttributes</code> | [SendMessageCommandInput messageSystemAttributes](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-sqs/interfaces/sendmessagecommandinput.html#messagesystemattributes) |
 
 <a name="module_WrappedSqsClient.WrappedSqsClient+sendMessageBatch"></a>
@@ -258,21 +258,17 @@ Encode message attributes for SQS.
 
 ### WrappedSqsClient~SendMessageBatchRequestEntry : <code>object</code>
 **Kind**: inner typedef of [<code>WrappedSqsClient</code>](#module_WrappedSqsClient)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| [deduplicationId] | <code>string</code> | [SendMessageCommandInput messageDeduplicationId](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-sqs/interfaces/sendmessagecommandinput.html#messagededuplicationid) |
-| [delaySeconds] | <code>number</code> | Delay in seconds. |
-| [groupId] | <code>string</code> | [SendMessageCommandInput messageGroupId](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-sqs/interfaces/sendmessagecommandinput.html#messagegroupid) |
-| id | <code>string</code> | Message ID. |
-| [systemAttributes] | <code>DecodedMessageAttributes</code> | [SendMessageCommandInput messageSystemAttributes](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-sqs/interfaces/sendmessagecommandinput.html#messagesystemattributes) |
-
 **Properties**
 
 | Name | Type | Description |
 | --- | --- | --- |
-| [attributes] | <code>DecodedMessageAttributes</code> | [Message attributes.](DecodedMessageAttributes) |
 | body | <code>\*</code> | [SendMessageCommandInput messageBody](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-sqs/interfaces/sendmessagecommandinput.html#messagebody). Must be a string or a JSON-serializable object. |
+| [deduplicationId] | <code>string</code> | [SendMessageCommandInput messageDeduplicationId](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-sqs/interfaces/sendmessagecommandinput.html#messagededuplicationid) |
+| [delaySeconds] | <code>number</code> | Delay in seconds. |
+| [groupId] | <code>string</code> | [SendMessageCommandInput messageGroupId](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-sqs/interfaces/sendmessagecommandinput.html#messagegroupid) |
+| id | <code>string</code> | Message ID. |
+| [messageAttributes] | <code>DecodedMessageAttributes</code> | [Message attributes.](DecodedMessageAttributes) |
+| [systemAttributes] | <code>DecodedMessageAttributes</code> | [SendMessageCommandInput messageSystemAttributes](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-sqs/interfaces/sendmessagecommandinput.html#messagesystemattributes) |
 
 
 ---
