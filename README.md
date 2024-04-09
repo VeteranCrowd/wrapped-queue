@@ -22,6 +22,7 @@ This package wraps the [SQS Client - AWS SDK for JavaScript v3](https://docs.aws
                 * [.deleteQueue()](#module_WrappedSqsClient.WrappedSqsClient+deleteQueue) ⇒ <code>Promise.&lt;WrappedSqsClient&gt;</code>
                 * [.deleteMessageBatch(messages)](#module_WrappedSqsClient.WrappedSqsClient+deleteMessageBatch) ⇒ <code>Promise.&lt;WrappedSqsClient&gt;</code>
                 * [.getQueue(queueName)](#module_WrappedSqsClient.WrappedSqsClient+getQueue) ⇒ <code>Promise.&lt;WrappedSqsClient&gt;</code>
+                * [.getQueueAttributes([attributeNames])](#module_WrappedSqsClient.WrappedSqsClient+getQueueAttributes) ⇒ <code>Promise.&lt;object&gt;</code>
                 * [.purgeQueue()](#module_WrappedSqsClient.WrappedSqsClient+purgeQueue) ⇒ <code>Promise.&lt;WrappedSqsClient&gt;</code>
                 * [.queueExists(queueName)](#module_WrappedSqsClient.WrappedSqsClient+queueExists) ⇒ <code>Promise.&lt;boolean&gt;</code>
                 * [.receiveMessages([options])](#module_WrappedSqsClient.WrappedSqsClient+receiveMessages) ⇒ <code>Promise.&lt;Array.&lt;{messageId: string, body: any, attributes: Object.&lt;string, string&gt;}&gt;&gt;</code>
@@ -54,6 +55,7 @@ Wraps an AWS SQS client to provide standard logging & services.
         * [.deleteQueue()](#module_WrappedSqsClient.WrappedSqsClient+deleteQueue) ⇒ <code>Promise.&lt;WrappedSqsClient&gt;</code>
         * [.deleteMessageBatch(messages)](#module_WrappedSqsClient.WrappedSqsClient+deleteMessageBatch) ⇒ <code>Promise.&lt;WrappedSqsClient&gt;</code>
         * [.getQueue(queueName)](#module_WrappedSqsClient.WrappedSqsClient+getQueue) ⇒ <code>Promise.&lt;WrappedSqsClient&gt;</code>
+        * [.getQueueAttributes([attributeNames])](#module_WrappedSqsClient.WrappedSqsClient+getQueueAttributes) ⇒ <code>Promise.&lt;object&gt;</code>
         * [.purgeQueue()](#module_WrappedSqsClient.WrappedSqsClient+purgeQueue) ⇒ <code>Promise.&lt;WrappedSqsClient&gt;</code>
         * [.queueExists(queueName)](#module_WrappedSqsClient.WrappedSqsClient+queueExists) ⇒ <code>Promise.&lt;boolean&gt;</code>
         * [.receiveMessages([options])](#module_WrappedSqsClient.WrappedSqsClient+receiveMessages) ⇒ <code>Promise.&lt;Array.&lt;{messageId: string, body: any, attributes: Object.&lt;string, string&gt;}&gt;&gt;</code>
@@ -144,6 +146,18 @@ Get existing queue by name.
 | --- | --- | --- |
 | queueName | <code>string</code> | Queue name. |
 
+<a name="module_WrappedSqsClient.WrappedSqsClient+getQueueAttributes"></a>
+
+#### wrappedSqsClient.getQueueAttributes([attributeNames]) ⇒ <code>Promise.&lt;object&gt;</code>
+Get queue attributes.
+
+**Kind**: instance method of [<code>WrappedSqsClient</code>](#module_WrappedSqsClient.WrappedSqsClient)  
+**Returns**: <code>Promise.&lt;object&gt;</code> - Queue attributes.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| [attributeNames] | <code>Array.&lt;string&gt;</code> | [GetQueueAttributesCommand](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/client/sqs/command/GetQueueAttributesCommand/) |
+
 <a name="module_WrappedSqsClient.WrappedSqsClient+purgeQueue"></a>
 
 #### wrappedSqsClient.purgeQueue() ⇒ <code>Promise.&lt;WrappedSqsClient&gt;</code>
@@ -187,11 +201,11 @@ Sends a message.
 | Param | Type | Description |
 | --- | --- | --- |
 | options | <code>object</code> | Options. |
-| [options.attributes] | <code>DecodedMessageAttributes</code> | [Message attributes.](DecodedMessageAttributes) |
 | options.body | <code>\*</code> | [SendMessageCommandInput messageBody](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-sqs/interfaces/sendmessagecommandinput.html#messagebody). Must be a string or a JSON-serializable object. |
 | [options.deduplicationId] | <code>string</code> | [SendMessageCommandInput messageDeduplicationId](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-sqs/interfaces/sendmessagecommandinput.html#messagededuplicationid) |
 | [options.delaySeconds] | <code>number</code> | Delay in seconds. |
 | [options.groupId] | <code>string</code> | [SendMessageCommandInput messageGroupId](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-sqs/interfaces/sendmessagecommandinput.html#messagegroupid) |
+| [options.messageAttributes] | <code>DecodedMessageAttributes</code> | [Message attributes.](DecodedMessageAttributes) |
 | [options.systemAttributes] | <code>DecodedMessageAttributes</code> | [SendMessageCommandInput messageSystemAttributes](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-sqs/interfaces/sendmessagecommandinput.html#messagesystemattributes) |
 
 <a name="module_WrappedSqsClient.WrappedSqsClient+sendMessageBatch"></a>
@@ -258,21 +272,17 @@ Encode message attributes for SQS.
 
 ### WrappedSqsClient~SendMessageBatchRequestEntry : <code>object</code>
 **Kind**: inner typedef of [<code>WrappedSqsClient</code>](#module_WrappedSqsClient)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| [deduplicationId] | <code>string</code> | [SendMessageCommandInput messageDeduplicationId](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-sqs/interfaces/sendmessagecommandinput.html#messagededuplicationid) |
-| [delaySeconds] | <code>number</code> | Delay in seconds. |
-| [groupId] | <code>string</code> | [SendMessageCommandInput messageGroupId](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-sqs/interfaces/sendmessagecommandinput.html#messagegroupid) |
-| id | <code>string</code> | Message ID. |
-| [systemAttributes] | <code>DecodedMessageAttributes</code> | [SendMessageCommandInput messageSystemAttributes](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-sqs/interfaces/sendmessagecommandinput.html#messagesystemattributes) |
-
 **Properties**
 
 | Name | Type | Description |
 | --- | --- | --- |
-| [attributes] | <code>DecodedMessageAttributes</code> | [Message attributes.](DecodedMessageAttributes) |
 | body | <code>\*</code> | [SendMessageCommandInput messageBody](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-sqs/interfaces/sendmessagecommandinput.html#messagebody). Must be a string or a JSON-serializable object. |
+| [deduplicationId] | <code>string</code> | [SendMessageCommandInput messageDeduplicationId](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-sqs/interfaces/sendmessagecommandinput.html#messagededuplicationid) |
+| [delaySeconds] | <code>number</code> | Delay in seconds. |
+| [groupId] | <code>string</code> | [SendMessageCommandInput messageGroupId](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-sqs/interfaces/sendmessagecommandinput.html#messagegroupid) |
+| id | <code>string</code> | Message ID. |
+| [messageAttributes] | <code>DecodedMessageAttributes</code> | [Message attributes.](DecodedMessageAttributes) |
+| [systemAttributes] | <code>DecodedMessageAttributes</code> | [SendMessageCommandInput messageSystemAttributes](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-sqs/interfaces/sendmessagecommandinput.html#messagesystemattributes) |
 
 
 ---
